@@ -1,0 +1,61 @@
+Device: cuda
+Parameters: 88,838
+Epoch  1/50 | Loss: 1.5579 | Val Acc: 0.4593
+Epoch  2/50 | Loss: 1.4091 | Val Acc: 0.5207
+Epoch  3/50 | Loss: 1.2886 | Val Acc: 0.5517
+Epoch  4/50 | Loss: 1.4007 | Val Acc: 0.3418
+Epoch  5/50 | Loss: 1.5813 | Val Acc: 0.3383
+Epoch  6/50 | Loss: 1.5635 | Val Acc: 0.3863
+Epoch  7/50 | Loss: 1.3280 | Val Acc: 0.5422
+Epoch  8/50 | Loss: 1.0575 | Val Acc: 0.6562
+Epoch  9/50 | Loss: 1.1192 | Val Acc: 0.4868
+Epoch 10/50 | Loss: 1.0971 | Val Acc: 0.6622
+Epoch 11/50 | Loss: 0.8478 | Val Acc: 0.5872
+Epoch 12/50 | Loss: 0.8163 | Val Acc: 0.6832
+Epoch 13/50 | Loss: 0.7379 | Val Acc: 0.6957
+Epoch 14/50 | Loss: 0.6939 | Val Acc: 0.7176
+Epoch 15/50 | Loss: 0.6938 | Val Acc: 0.6682
+Epoch 16/50 | Loss: 0.6828 | Val Acc: 0.7491
+Epoch 17/50 | Loss: 0.5984 | Val Acc: 0.7571
+Epoch 18/50 | Loss: 0.5578 | Val Acc: 0.7666
+Epoch 19/50 | Loss: 0.6318 | Val Acc: 0.7611
+Epoch 20/50 | Loss: 0.5444 | Val Acc: 0.7901
+Epoch 21/50 | Loss: 0.5059 | Val Acc: 0.8126
+Epoch 22/50 | Loss: 0.4729 | Val Acc: 0.8281
+Epoch 23/50 | Loss: 0.4846 | Val Acc: 0.8476
+Epoch 24/50 | Loss: 0.4706 | Val Acc: 0.8536
+Epoch 25/50 | Loss: 0.3979 | Val Acc: 0.8666
+Epoch 26/50 | Loss: 0.3396 | Val Acc: 0.8776
+Epoch 27/50 | Loss: 0.3421 | Val Acc: 0.8896
+Epoch 28/50 | Loss: 0.3261 | Val Acc: 0.8886
+Epoch 29/50 | Loss: 0.2955 | Val Acc: 0.8926
+Epoch 30/50 | Loss: 0.3472 | Val Acc: 0.8811
+Epoch 31/50 | Loss: 0.2971 | Val Acc: 0.8866
+Epoch 32/50 | Loss: 0.2722 | Val Acc: 0.8731
+Epoch 33/50 | Loss: 0.2785 | Val Acc: 0.8936
+Epoch 34/50 | Loss: 0.2649 | Val Acc: 0.8916
+Epoch 35/50 | Loss: 0.2716 | Val Acc: 0.9000
+Epoch 36/50 | Loss: 0.2437 | Val Acc: 0.8956
+Epoch 37/50 | Loss: 0.2749 | Val Acc: 0.8956
+Epoch 38/50 | Loss: 0.2430 | Val Acc: 0.9025
+Epoch 39/50 | Loss: 0.2404 | Val Acc: 0.9080
+Epoch 40/50 | Loss: 0.2308 | Val Acc: 0.8916
+Epoch 41/50 | Loss: 0.2215 | Val Acc: 0.9025
+Epoch 42/50 | Loss: 0.2138 | Val Acc: 0.9035
+Epoch 43/50 | Loss: 0.2164 | Val Acc: 0.9055
+Epoch 44/50 | Loss: 0.2104 | Val Acc: 0.9075
+Epoch 45/50 | Loss: 0.2014 | Val Acc: 0.9070
+Epoch 46/50 | Loss: 0.2021 | Val Acc: 0.9060
+Epoch 47/50 | Loss: 0.2012 | Val Acc: 0.9100
+Epoch 48/50 | Loss: 0.2003 | Val Acc: 0.9105
+Epoch 49/50 | Loss: 0.1964 | Val Acc: 0.9100
+Epoch 50/50 | Loss: 0.1981 | Val Acc: 0.9100
+
+Test Accuracy: 0.9020, Macro-F1: 0.8543
+  anger: P=0.894 R=0.930 F1=0.911
+  fear: P=0.869 R=0.840 F1=0.854
+  joy: P=0.934 R=0.920 F1=0.927
+  love: P=0.781 R=0.872 F1=0.824
+  sadness: P=0.936 R=0.938 F1=0.937
+  surprise: P=0.746 R=0.611 F1=0.672
+root@autodl-container-bud5qn7u2k-b2fa49ec:~/nlp_project# 

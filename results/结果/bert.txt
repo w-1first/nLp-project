@@ -1,0 +1,154 @@
+============================================================
+BERT (Frozen) - Only train classifier head
+============================================================
+Device: cuda
+Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 199/199 [00:00<00:00, 978.40it/s]
+[transformers] BertModel LOAD REPORT from: bert-base-uncased
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:   can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+BERT (frozen) Parameters: 297,606
+Epoch  1/10 | Loss: 1.3541 | Val Acc: 0.5552
+Epoch  2/10 | Loss: 1.2460 | Val Acc: 0.5672
+Epoch  3/10 | Loss: 1.2197 | Val Acc: 0.5652
+Epoch  4/10 | Loss: 1.2006 | Val Acc: 0.5787
+Epoch  5/10 | Loss: 1.1855 | Val Acc: 0.5797
+Epoch  6/10 | Loss: 1.1776 | Val Acc: 0.5717
+Epoch  7/10 | Loss: 1.1625 | Val Acc: 0.5902
+Epoch  8/10 | Loss: 1.1618 | Val Acc: 0.5817
+Epoch  9/10 | Loss: 1.1410 | Val Acc: 0.5907
+Epoch 10/10 | Loss: 1.1490 | Val Acc: 0.5907
+
+Test Accuracy: 0.5895, Macro-F1: 0.4386
+  anger: P=0.583 R=0.362 F1=0.446
+  fear: P=0.500 R=0.321 F1=0.391
+  joy: P=0.652 R=0.809 F1=0.722
+  love: P=0.553 R=0.128 F1=0.208
+  sadness: P=0.544 R=0.734 F1=0.625
+  surprise: P=0.550 R=0.153 F1=0.239
+
+============================================================
+BERT (Full Fine-tune)
+============================================================
+Device: cuda
+Loading weights: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████| 199/199 [00:00<00:00, 8602.68it/s]
+[transformers] BertModel LOAD REPORT from: bert-base-uncased
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:   can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+BERT (full) Parameters: 109,779,846
+Epoch  1/5 | Loss: 0.5915 | Val Acc: 0.9345
+Epoch  2/5 | Loss: 0.1529 | Val Acc: 0.9360
+Epoch  3/5 | Loss: 0.1090 | Val Acc: 0.9365
+Epoch  4/5 | Loss: 0.0832 | Val Acc: 0.9440
++-----------------------------------------------AutoDL-----------------------------------------------------+
+目录说明:
+╔═════════════════╦════════╦════╦═════════════════════════════════════════════════════════════════════════╗
+║目录             ║名称    ║速度║说明                                                                     ║
+╠═════════════════╬════════╬════╬═════════════════════════════════════════════════════════════════════════╣
+║/                ║系 统 盘║一般║实例关机数据不会丢失，可存放代码等。会随保存镜像一起保存。               ║
+║/root/autodl-tmp ║数 据 盘║ 快 ║实例关机数据不会丢失，可存放读写IO要求高的数据。但不会随保存镜像一起保存 ║
+╚═════════════════╩════════╩════╩═════════════════════════════════════════════════════════════════════════╝
+CPU ：25 核心
+内存：90 GB
+GPU ：NVIDIA GeForce RTX 5090, 1
+存储：
+  系 统 盘/               ：27% 7.9G/30G
+  数 据 盘/root/autodl-tmp：1% 324K/50G
++----------------------------------------------------------------------------------------------------------+
+*注意: 
+1.系统盘较小请将大的数据存放于数据盘或文件存储中，重置系统时数据盘和文件存储中的数据不受影响
+2.清理系统盘请参考：https://www.autodl.com/docs/qa1/
+3.终端中长期执行命令请使用screen等工具开后台运行，确保程序不受SSH连接中断影响：https://www.autodl.com/docs/daemon/
+root@autodl-container-bud5qn7u2k-b2fa49ec:~#   cd /root/nlp_project
+root@autodl-container-bud5qn7u2k-b2fa49ec:~/nlp_project# HF_ENDPOINT=https://hf-mirror.com python3 src/train_bert.py
+
+============================================================
+BERT (Frozen) - Only train classifier head
+============================================================
+Device: cuda
+Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 199/199 [00:00<00:00, 978.40it/s]
+[transformers] BertModel LOAD REPORT from: bert-base-uncased
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:   can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+BERT (frozen) Parameters: 297,606
+Epoch  1/10 | Loss: 1.3541 | Val Acc: 0.5552
+Epoch  2/10 | Loss: 1.2460 | Val Acc: 0.5672
+Epoch  3/10 | Loss: 1.2197 | Val Acc: 0.5652
+Epoch  4/10 | Loss: 1.2006 | Val Acc: 0.5787
+Epoch  5/10 | Loss: 1.1855 | Val Acc: 0.5797
+Epoch  6/10 | Loss: 1.1776 | Val Acc: 0.5717
+Epoch  7/10 | Loss: 1.1625 | Val Acc: 0.5902
+Epoch  8/10 | Loss: 1.1618 | Val Acc: 0.5817
+Epoch  9/10 | Loss: 1.1410 | Val Acc: 0.5907
+Epoch 10/10 | Loss: 1.1490 | Val Acc: 0.5907
+
+Test Accuracy: 0.5895, Macro-F1: 0.4386
+  anger: P=0.583 R=0.362 F1=0.446
+  fear: P=0.500 R=0.321 F1=0.391
+  joy: P=0.652 R=0.809 F1=0.722
+  love: P=0.553 R=0.128 F1=0.208
+  sadness: P=0.544 R=0.734 F1=0.625
+  surprise: P=0.550 R=0.153 F1=0.239
+
+============================================================
+BERT (Full Fine-tune)
+============================================================
+Device: cuda
+Loading weights: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████| 199/199 [00:00<00:00, 8602.68it/s]
+[transformers] BertModel LOAD REPORT from: bert-base-uncased
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:   can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+BERT (full) Parameters: 109,779,846
+Epoch  1/5 | Loss: 0.5915 | Val Acc: 0.9345
+Epoch  2/5 | Loss: 0.1529 | Val Acc: 0.9360
+Epoch  3/5 | Loss: 0.1090 | Val Acc: 0.9365
+Epoch  4/5 | Loss: 0.0832 | Val Acc: 0.9440
+Epoch  5/5 | Loss: 0.0667 | Val Acc: 0.9385
+
+Test Accuracy: 0.9390, Macro-F1: 0.9069
+  anger: P=0.955 R=0.941 F1=0.948
+  fear: P=0.904 R=0.916 F1=0.910
+  joy: P=0.951 R=0.951 F1=0.951
+  love: P=0.844 R=0.823 F1=0.833
+  sadness: P=0.965 R=0.986 F1=0.975
+  surprise: P=0.875 R=0.778 F1=0.824
+root@autodl-container-bud5qn7u2k-b2fa49ec:~/nlp_project# 

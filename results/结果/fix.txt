@@ -1,0 +1,42 @@
+root@autodl-container-bud5qn7u2k-b2fa49ec:~/nlp_project#   python3 fix_transformer.py
+Device: cuda
+Loading GloVe from data/glove.6B.300d.txt...
+Loading vectors: 400001it [00:18, 21471.39it/s]
+Loaded 400001 words, dim=300
+
+Loading Transformer with pooling='mean'...
+Acc=0.8670 Macro-F1=0.8343
+Macro-P=0.8553 Macro-R=0.8184
+  anger: P=0.860 R=0.860 F1=0.860
+  fear: P=0.830 R=0.823 F1=0.826
+  joy: P=0.861 R=0.938 F1=0.898
+  love: P=0.884 R=0.695 F1=0.778
+  sadness: P=0.897 R=0.872 F1=0.885
+  surprise: P=0.800 R=0.722 F1=0.759
+
+=== Updated all_metrics.csv ===
+           model  accuracy  macro_precision  macro_recall  macro_f1  weighted_f1  train_time    params
+     BERT (full)    0.9390         0.910000      0.900000  0.906900     0.938600  174.280000 109779846
+            LSTM    0.9375         0.916038      0.902260  0.908518     0.937033  155.320000   1131398
+BiLSTM+Attention    0.9355         0.893192      0.907494  0.899017     0.935653  133.670000   3049351
+          BiLSTM    0.9285         0.901776      0.892073  0.895260     0.928385  161.010000   2786182
+             RNN    0.9020         0.860008      0.851777  0.854255     0.901553  134.860000     88838
+    TF-IDF + SVM    0.8975         0.874210      0.860166  0.866746     0.896913    0.646381         0
+             CNN    0.8940         0.866583      0.838123  0.848542     0.891867   24.140000   1208198
+     Transformer    0.8670         0.855310      0.818365  0.834327     0.865619  212.110000   2219142
+     TF-IDF + LR    0.8490         0.867081      0.729592  0.777743     0.841274    2.089746         0
+     TF-IDF + NB    0.6730         0.867047      0.425586  0.431393     0.607365    0.014704         0
+   BERT (frozen)    0.4975         0.300000      0.230000  0.203000     0.385200   76.980000    297606
+
+=== Updated Per-Class F1 ===
+class             anger   fear    joy   love  sadness  surprise
+model                                                          
+BiLSTM            0.923  0.904  0.944  0.843    0.964     0.794
+BiLSTM+Attention  0.938  0.878  0.955  0.861    0.976     0.787
+CNN               0.893  0.849  0.924  0.746    0.931     0.748
+LSTM              0.938  0.913  0.950  0.839    0.971     0.841
+RNN               0.911  0.854  0.927  0.824    0.937     0.672
+Transformer       0.860  0.826  0.898  0.778    0.885     0.759
+
+DONE - Transformer fixed.
+root@autodl-container-bud5qn7u2k-b2fa49ec:~/nlp_project# 

@@ -1,0 +1,98 @@
+root@autodl-container-bud5qn7u2k-b2fa49ec:~/nlp_project#   cd /root/nlp_project && python3 further_experiments.py
+Device: cuda
+Loading GloVe from data/glove.6B.300d.txt...
+Loading vectors: 400001it [00:18, 21529.62it/s]
+Loaded 400001 words, dim=300
+
+============================================================
+FURTHER EXPERIMENT 1: Learning Rate Comparison (CNN)
+============================================================
+
+--- LR = 0.0001 ---
+  Early stop at epoch 23
+  Acc=0.9045 Macro-F1=0.8676 Time=71.9s
+
+--- LR = 0.0005 ---
+  Early stop at epoch 12
+  Acc=0.8910 Macro-F1=0.8563 Time=36.4s
+
+--- LR = 0.001 ---
+  Early stop at epoch 18
+  Acc=0.8985 Macro-F1=0.8585 Time=54.7s
+
+--- LR = 0.005 ---
+  Early stop at epoch 11
+  Acc=0.8715 Macro-F1=0.8265 Time=33.0s
+
+--- LR = 0.01 ---
+  Early stop at epoch 28
+  Acc=0.8850 Macro-F1=0.8458 Time=84.6s
+
+=== LR Comparison Table ===
+    lr  accuracy  macro_f1  train_time
+0.0001    0.9045  0.867598   71.873905
+0.0005    0.8910  0.856298   36.379585
+0.0010    0.8985  0.858534   54.749272
+0.0050    0.8715  0.826462   32.965068
+0.0100    0.8850  0.845774   84.600972
+
+============================================================
+FURTHER EXPERIMENT 2: Pooling Method Comparison (LSTM)
+============================================================
+
+--- Pooling: last ---
+  Early stop at epoch 6
+  Acc=0.3380 Macro-F1=0.0842 Time=45.8s
+
+--- Pooling: mean ---
+  Early stop at epoch 20
+  Acc=0.9245 Macro-F1=0.8853 Time=155.7s
+
+--- Pooling: max ---
+  Early stop at epoch 17
+  Acc=0.9340 Macro-F1=0.8998 Time=132.5s
+
+=== Pooling Comparison Table ===
+pooling  accuracy  macro_f1  train_time
+   last    0.3380  0.084205   45.799603
+   mean    0.9245  0.885274  155.744260
+    max    0.9340  0.899769  132.480846
+
+============================================================
+FURTHER EXPERIMENT 3: Dropout Comparison (CNN)
+============================================================
+
+--- Dropout = 0.0 ---
+  Early stop at epoch 16
+  Train Acc=0.8965 Val Acc=0.8951 Macro-F1=0.8490
+
+--- Dropout = 0.2 ---
+  Early stop at epoch 8
+  Train Acc=0.8870 Val Acc=0.8891 Macro-F1=0.8401
+
+--- Dropout = 0.4 ---
+  Early stop at epoch 18
+  Train Acc=0.8985 Val Acc=0.8911 Macro-F1=0.8585
+
+--- Dropout = 0.6 ---
+  Early stop at epoch 14
+  Train Acc=0.8950 Val Acc=0.8896 Macro-F1=0.8495
+
+--- Dropout = 0.8 ---
+  Early stop at epoch 24
+  Train Acc=0.8905 Val Acc=0.8946 Macro-F1=0.8517
+
+=== Dropout Comparison Table ===
+ dropout  accuracy  val_accuracy  macro_f1  best_epoch
+     0.0    0.8965      0.895052  0.849011          16
+     0.2    0.8870      0.889055  0.840078           8
+     0.4    0.8985      0.891054  0.858534          18
+     0.6    0.8950      0.889555  0.849498          14
+     0.8    0.8905      0.894553  0.851687          24
+
+============================================================
+ALL FURTHER EXPERIMENTS COMPLETE
+Results saved to results/
+============================================================
+Files: lr_comparison.csv, pooling_comparison.csv, dropout_comparison.csv
+root@autodl-container-bud5qn7u2k-b2fa49ec:~/nlp_project# 

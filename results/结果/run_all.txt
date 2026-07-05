@@ -1,0 +1,661 @@
+
+root@autodl-container-bud5qn7u2k-b2fa49ec:~/nlp_project#  python3 run_all.py
+============================================================
+Running models: ['traditional', 'cnn', 'rnn', 'lstm', 'transformer', 'bert']
+============================================================
+
+
+############################################################
+# STEP 1: Data Analysis
+############################################################
+==================================================
+DATASET ANALYSIS
+==================================================
+Total samples: 20000
+Number of classes: 6
+
+Class distribution:
+  joy         :  6761 ( 33.8%)
+  sadness     :  5797 ( 29.0%)
+  anger       :  2709 ( 13.5%)
+  fear        :  2373 ( 11.9%)
+  love        :  1641 (  8.2%)
+  surprise    :   719 (  3.6%)
+
+Text length statistics (words):
+  Min:    2
+  Max:    66
+  Mean:   19.1
+  Median: 17
+  Std:    11.0
+  95th percentile: 41
+
+Saved data_analysis.png
+
+Sample texts per class:
+  [sadness] i didnt feel humiliated
+  [anger] im grabbing a minute to post i feel greedy wrong
+  [love] i am ever feeling nostalgic about the fireplace i will know that it is still on the property
+  [surprise] ive been taking or milligrams or times recommended amount and ive fallen asleep a lot faster but i a
+  [fear] i feel as confused about life as a teenager or as jaded as a year old man
+  [joy] i have been with petronas for years i feel that petronas has performed well and made a huge profit
+
+
+############################################################
+# STEP 2: Loading GloVe Embeddings
+############################################################
+Loading GloVe from data/glove.6B.300d.txt...
+Loading vectors: 400001it [00:19, 20899.40it/s]
+Loaded 400001 words, dim=300
+
+
+############################################################
+# STEP 3: Traditional ML Baselines
+############################################################
+
+============================================================
+Training: TF-IDF + LR
+============================================================
+/root/miniconda3/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=-1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+Accuracy: 0.8490, Macro-F1: 0.7777, Time: 2.0s
+  anger: P=0.903 R=0.753 F1=0.821
+  fear: P=0.906 R=0.688 F1=0.782
+  joy: P=0.809 R=0.976 F1=0.885
+  love: P=0.902 R=0.561 F1=0.692
+  sadness: P=0.858 R=0.941 F1=0.898
+  surprise: P=0.825 R=0.458 F1=0.589
+
+============================================================
+Training: TF-IDF + SVM
+============================================================
+Accuracy: 0.8975, Macro-F1: 0.8667, Time: 0.7s
+  anger: P=0.891 R=0.871 F1=0.881
+  fear: P=0.898 R=0.819 F1=0.857
+  joy: P=0.904 R=0.942 F1=0.923
+  love: P=0.823 R=0.793 F1=0.807
+  sadness: P=0.925 R=0.931 F1=0.928
+  surprise: P=0.806 R=0.806 F1=0.806
+
+============================================================
+Training: TF-IDF + NB
+============================================================
+Accuracy: 0.6730, Macro-F1: 0.4314, Time: 0.0s
+  anger: P=0.922 R=0.306 F1=0.460
+  fear: P=0.973 R=0.308 F1=0.468
+  joy: P=0.618 R=0.985 F1=0.759
+  love: P=1.000 R=0.037 F1=0.071
+  sadness: P=0.689 R=0.890 F1=0.777
+  surprise: P=1.000 R=0.028 F1=0.054
+
+Traditional ML done!
+
+
+############################################################
+# STEP 4: CNN
+############################################################
+Device: cuda
+Parameters: 1,208,198
+Epoch  1/20 | Loss: 0.8816 | Val Acc: 0.8621
+Epoch  2/20 | Loss: 0.3602 | Val Acc: 0.8846
+Epoch  3/20 | Loss: 0.2439 | Val Acc: 0.8956
+Epoch  4/20 | Loss: 0.1657 | Val Acc: 0.8876
+Epoch  5/20 | Loss: 0.1196 | Val Acc: 0.8931
+Epoch  6/20 | Loss: 0.0923 | Val Acc: 0.8921
+Epoch  7/20 | Loss: 0.0724 | Val Acc: 0.8856
+Epoch  8/20 | Loss: 0.0601 | Val Acc: 0.8961
+Early stopping at epoch 8
+
+Test Accuracy: 0.8940, Macro-F1: 0.8485
+  anger: P=0.863 R=0.926 F1=0.893
+  fear: P=0.897 R=0.806 F1=0.849
+  joy: P=0.901 R=0.947 F1=0.924
+  love: P=0.883 R=0.646 F1=0.746
+  sadness: P=0.922 R=0.940 F1=0.931
+  surprise: P=0.733 R=0.764 F1=0.748
+
+
+############################################################
+# STEP 5: RNN
+############################################################
+Device: cuda
+Parameters: 88,838
+Epoch  1/50 | Loss: 1.5579 | Val Acc: 0.4593
+Epoch  2/50 | Loss: 1.4091 | Val Acc: 0.5207
+Epoch  3/50 | Loss: 1.2886 | Val Acc: 0.5517
+Epoch  4/50 | Loss: 1.4007 | Val Acc: 0.3418
+Epoch  5/50 | Loss: 1.5813 | Val Acc: 0.3383
+Epoch  6/50 | Loss: 1.5635 | Val Acc: 0.3863
+Epoch  7/50 | Loss: 1.3280 | Val Acc: 0.5422
+Epoch  8/50 | Loss: 1.0575 | Val Acc: 0.6562
+Epoch  9/50 | Loss: 1.1192 | Val Acc: 0.4868
+Epoch 10/50 | Loss: 1.0971 | Val Acc: 0.6622
+Epoch 11/50 | Loss: 0.8478 | Val Acc: 0.5872
+Epoch 12/50 | Loss: 0.8163 | Val Acc: 0.6832
+Epoch 13/50 | Loss: 0.7379 | Val Acc: 0.6957
+Epoch 14/50 | Loss: 0.6939 | Val Acc: 0.7176
+Epoch 15/50 | Loss: 0.6938 | Val Acc: 0.6682
+Epoch 16/50 | Loss: 0.6828 | Val Acc: 0.7491
+Epoch 17/50 | Loss: 0.5984 | Val Acc: 0.7571
+Epoch 18/50 | Loss: 0.5578 | Val Acc: 0.7666
+Epoch 19/50 | Loss: 0.6318 | Val Acc: 0.7611
+Epoch 20/50 | Loss: 0.5444 | Val Acc: 0.7901
+Epoch 21/50 | Loss: 0.5059 | Val Acc: 0.8126
+Epoch 22/50 | Loss: 0.4729 | Val Acc: 0.8281
+Epoch 23/50 | Loss: 0.4846 | Val Acc: 0.8476
+Epoch 24/50 | Loss: 0.4706 | Val Acc: 0.8536
+Epoch 25/50 | Loss: 0.3979 | Val Acc: 0.8666
+Epoch 26/50 | Loss: 0.3396 | Val Acc: 0.8776
+Epoch 27/50 | Loss: 0.3421 | Val Acc: 0.8896
+Epoch 28/50 | Loss: 0.3261 | Val Acc: 0.8886
+Epoch 29/50 | Loss: 0.2955 | Val Acc: 0.8926
+Epoch 30/50 | Loss: 0.3472 | Val Acc: 0.8811
+Epoch 31/50 | Loss: 0.2971 | Val Acc: 0.8866
+Epoch 32/50 | Loss: 0.2722 | Val Acc: 0.8731
+Epoch 33/50 | Loss: 0.2785 | Val Acc: 0.8936
+Epoch 34/50 | Loss: 0.2649 | Val Acc: 0.8916
+Epoch 35/50 | Loss: 0.2716 | Val Acc: 0.9000
+Epoch 36/50 | Loss: 0.2437 | Val Acc: 0.8956
+Epoch 37/50 | Loss: 0.2749 | Val Acc: 0.8956
+Epoch 38/50 | Loss: 0.2430 | Val Acc: 0.9025
+Epoch 39/50 | Loss: 0.2404 | Val Acc: 0.9080
+Epoch 40/50 | Loss: 0.2308 | Val Acc: 0.8916
+Epoch 41/50 | Loss: 0.2215 | Val Acc: 0.9025
+Epoch 42/50 | Loss: 0.2138 | Val Acc: 0.9035
+Epoch 43/50 | Loss: 0.2164 | Val Acc: 0.9055
+Epoch 44/50 | Loss: 0.2104 | Val Acc: 0.9075
+Epoch 45/50 | Loss: 0.2014 | Val Acc: 0.9070
+Epoch 46/50 | Loss: 0.2021 | Val Acc: 0.9060
+Epoch 47/50 | Loss: 0.2012 | Val Acc: 0.9100
+Epoch 48/50 | Loss: 0.2003 | Val Acc: 0.9105
+Epoch 49/50 | Loss: 0.1964 | Val Acc: 0.9100
+Epoch 50/50 | Loss: 0.1981 | Val Acc: 0.9100
+
+Test Accuracy: 0.9020, Macro-F1: 0.8543
+  anger: P=0.894 R=0.930 F1=0.911
+  fear: P=0.869 R=0.840 F1=0.854
+  joy: P=0.934 R=0.920 F1=0.927
+  love: P=0.781 R=0.872 F1=0.824
+  sadness: P=0.936 R=0.938 F1=0.937
+  surprise: P=0.746 R=0.611 F1=0.672
+
+
+############################################################
+# STEP 6: LSTM / BiLSTM
+############################################################
+
+============================================================
+LSTM
+============================================================
+LSTM Parameters: 1,131,398
+Epoch  1/20 | Loss: 1.5499 | Val Acc: 0.3408
+Epoch  2/20 | Loss: 1.5595 | Val Acc: 0.3393
+Epoch  3/20 | Loss: 1.5717 | Val Acc: 0.3548
+Epoch  4/20 | Loss: 1.5255 | Val Acc: 0.4928
+Epoch  5/20 | Loss: 1.2043 | Val Acc: 0.6137
+Epoch  6/20 | Loss: 0.8261 | Val Acc: 0.7231
+Epoch  7/20 | Loss: 0.5369 | Val Acc: 0.8521
+Epoch  8/20 | Loss: 0.3430 | Val Acc: 0.8976
+Epoch  9/20 | Loss: 0.2378 | Val Acc: 0.9090
+Epoch 10/20 | Loss: 0.1788 | Val Acc: 0.9155
+Epoch 11/20 | Loss: 0.1603 | Val Acc: 0.9240
+Epoch 12/20 | Loss: 0.1286 | Val Acc: 0.9200
+Epoch 13/20 | Loss: 0.1187 | Val Acc: 0.9240
+Epoch 14/20 | Loss: 0.1110 | Val Acc: 0.9215
+Epoch 15/20 | Loss: 0.1028 | Val Acc: 0.9255
+Epoch 16/20 | Loss: 0.0925 | Val Acc: 0.9220
+Epoch 17/20 | Loss: 0.0911 | Val Acc: 0.9210
+Epoch 18/20 | Loss: 0.0904 | Val Acc: 0.9200
+Epoch 19/20 | Loss: 0.0853 | Val Acc: 0.9240
+Epoch 20/20 | Loss: 0.0861 | Val Acc: 0.9220
+Early stopping at epoch 20
+Test Accuracy: 0.9375, Macro-F1: 0.9085
+  anger: P=0.907 R=0.970 F1=0.938
+  fear: P=0.922 R=0.903 F1=0.913
+  joy: P=0.950 R=0.951 F1=0.950
+  love: P=0.869 R=0.811 F1=0.839
+  sadness: P=0.969 R=0.972 F1=0.971
+  surprise: P=0.879 R=0.806 F1=0.841
+
+============================================================
+BiLSTM
+============================================================
+BiLSTM Parameters: 2,786,182
+Epoch  1/20 | Loss: 1.3745 | Val Acc: 0.6207
+Epoch  2/20 | Loss: 0.7439 | Val Acc: 0.8491
+Epoch  3/20 | Loss: 0.3481 | Val Acc: 0.9020
+Epoch  4/20 | Loss: 0.2158 | Val Acc: 0.9045
+Epoch  5/20 | Loss: 0.1566 | Val Acc: 0.9175
+Epoch  6/20 | Loss: 0.1296 | Val Acc: 0.9100
+Epoch  7/20 | Loss: 0.1174 | Val Acc: 0.9155
+Epoch  8/20 | Loss: 0.1036 | Val Acc: 0.9195
+Epoch  9/20 | Loss: 0.0920 | Val Acc: 0.9190
+Epoch 10/20 | Loss: 0.0839 | Val Acc: 0.9230
+Epoch 11/20 | Loss: 0.0757 | Val Acc: 0.9235
+Epoch 12/20 | Loss: 0.0707 | Val Acc: 0.9185
+Epoch 13/20 | Loss: 0.0589 | Val Acc: 0.9205
+Epoch 14/20 | Loss: 0.0546 | Val Acc: 0.9180
+Epoch 15/20 | Loss: 0.0466 | Val Acc: 0.9180
+Early stopping at epoch 15
+Test Accuracy: 0.9285, Macro-F1: 0.8953
+  anger: P=0.893 R=0.956 F1=0.923
+  fear: P=0.893 R=0.916 F1=0.904
+  joy: P=0.960 R=0.928 F1=0.944
+  love: P=0.821 R=0.866 F1=0.843
+  sadness: P=0.962 R=0.966 F1=0.964
+  surprise: P=0.881 R=0.722 F1=0.794
+
+============================================================
+BiLSTM + Attention
+============================================================
+BiLSTM+Attention Parameters: 3,049,351
+Epoch  1/20 | Loss: 1.2032 | Val Acc: 0.7836
+Epoch  2/20 | Loss: 0.3210 | Val Acc: 0.9075
+Epoch  3/20 | Loss: 0.1801 | Val Acc: 0.9200
+Epoch  4/20 | Loss: 0.1375 | Val Acc: 0.9295
+Epoch  5/20 | Loss: 0.1166 | Val Acc: 0.9310
+Epoch  6/20 | Loss: 0.1086 | Val Acc: 0.9260
+Epoch  7/20 | Loss: 0.1012 | Val Acc: 0.9360
+Epoch  8/20 | Loss: 0.0837 | Val Acc: 0.9370
+Epoch  9/20 | Loss: 0.0785 | Val Acc: 0.9345
+Epoch 10/20 | Loss: 0.0750 | Val Acc: 0.9340
+Epoch 11/20 | Loss: 0.0700 | Val Acc: 0.9330
+Epoch 12/20 | Loss: 0.0576 | Val Acc: 0.9335
+Early stopping at epoch 12
+Test Accuracy: 0.9355, Macro-F1: 0.8990
+  anger: P=0.907 R=0.970 F1=0.938
+  fear: P=0.929 R=0.831 F1=0.878
+  joy: P=0.961 R=0.948 F1=0.955
+  love: P=0.851 R=0.872 F1=0.861
+  sadness: P=0.976 R=0.976 F1=0.976
+  surprise: P=0.735 R=0.847 F1=0.787
+
+
+############################################################
+# STEP 7: Transformer Encoder
+############################################################
+Device: cuda
+Parameters: 2,219,142
+Epoch  1/30 | Loss: 1.5876 | Val Acc: 0.3378
+Epoch  2/30 | Loss: 1.4193 | Val Acc: 0.5932
+Epoch  3/30 | Loss: 1.0384 | Val Acc: 0.6482
+Epoch  4/30 | Loss: 0.8524 | Val Acc: 0.7686
+Epoch  5/30 | Loss: 0.6706 | Val Acc: 0.7866
+Epoch  6/30 | Loss: 0.5883 | Val Acc: 0.7931
+Epoch  7/30 | Loss: 0.5208 | Val Acc: 0.8361
+Epoch  8/30 | Loss: 0.4818 | Val Acc: 0.8286
+Epoch  9/30 | Loss: 0.4364 | Val Acc: 0.8471
+Epoch 10/30 | Loss: 0.4006 | Val Acc: 0.8546
+Epoch 11/30 | Loss: 0.3986 | Val Acc: 0.8496
+Epoch 12/30 | Loss: 0.3747 | Val Acc: 0.8501
+Epoch 13/30 | Loss: 0.3645 | Val Acc: 0.8436
+Epoch 14/30 | Loss: 0.3435 | Val Acc: 0.8461
+Epoch 15/30 | Loss: 0.3381 | Val Acc: 0.8591
+Epoch 16/30 | Loss: 0.3198 | Val Acc: 0.8601
+Epoch 17/30 | Loss: 0.3059 | Val Acc: 0.8641
+Epoch 18/30 | Loss: 0.2896 | Val Acc: 0.8671
+Epoch 19/30 | Loss: 0.2855 | Val Acc: 0.8611
+Epoch 20/30 | Loss: 0.2777 | Val Acc: 0.8716
+Epoch 21/30 | Loss: 0.2736 | Val Acc: 0.8616
+Epoch 22/30 | Loss: 0.2671 | Val Acc: 0.8706
+Epoch 23/30 | Loss: 0.2579 | Val Acc: 0.8656
+Epoch 24/30 | Loss: 0.2588 | Val Acc: 0.8711
+Epoch 25/30 | Loss: 0.2518 | Val Acc: 0.8701
+Epoch 26/30 | Loss: 0.2471 | Val Acc: 0.8706
+Epoch 27/30 | Loss: 0.2427 | Val Acc: 0.8716
+Epoch 28/30 | Loss: 0.2415 | Val Acc: 0.8741
+Epoch 29/30 | Loss: 0.2393 | Val Acc: 0.8751
+Epoch 30/30 | Loss: 0.2390 | Val Acc: 0.8761
+
+Test Accuracy: 0.8670, Macro-F1: 0.8343
+  anger: P=0.860 R=0.860 F1=0.860
+  fear: P=0.830 R=0.823 F1=0.826
+  joy: P=0.861 R=0.938 F1=0.898
+  love: P=0.884 R=0.695 F1=0.778
+  sadness: P=0.897 R=0.872 F1=0.885
+  surprise: P=0.800 R=0.722 F1=0.759
+
+
+############################################################
+# STEP 8: BERT Fine-tuning
+############################################################
+
+BERT (Frozen)
+Device: cuda
+Loading weights: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████| 199/199 [00:00<00:00, 10924.67it/s]
+[transformers] BertModel LOAD REPORT from: bert-base-uncased
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:   can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+BERT (frozen) Parameters: 297,606
+Epoch  1/5 | Loss: 1.5805 | Val Acc: 0.4758
+Epoch  2/5 | Loss: 1.4851 | Val Acc: 0.4898
+Epoch  3/5 | Loss: 1.4401 | Val Acc: 0.4958
+Epoch  4/5 | Loss: 1.4165 | Val Acc: 0.4973
+Epoch  5/5 | Loss: 1.4052 | Val Acc: 0.4963
+
+Test Accuracy: 0.4975, Macro-F1: 0.2030
+  anger: P=0.000 R=0.000 F1=0.000
+  fear: P=0.000 R=0.000 F1=0.000
+  joy: P=0.557 R=0.836 F1=0.668
+  love: P=0.000 R=0.000 F1=0.000
+  sadness: P=0.437 R=0.741 F1=0.550
+  surprise: P=0.000 R=0.000 F1=0.000
+
+BERT (Full Fine-tune)
+Device: cuda
+Loading weights: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████| 199/199 [00:00<00:00, 7521.21it/s]
+[transformers] BertModel LOAD REPORT from: bert-base-uncased
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:   can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+BERT (full) Parameters: 109,779,846
+Epoch  1/5 | Loss: 0.5915 | Val Acc: 0.9345
+Epoch  2/5 | Loss: 0.1529 | Val Acc: 0.9360
+Epoch  3/5 | Loss: 0.1090 | Val Acc: 0.9365
+Epoch  4/5 | Loss: 0.0832 | Val Acc: 0.9440
+Epoch  5/5 | Loss: 0.0667 | Val Acc: 0.9385
+
+Test Accuracy: 0.9390, Macro-F1: 0.9069
+  anger: P=0.955 R=0.941 F1=0.948
+  fear: P=0.904 R=0.916 F1=0.910
+  joy: P=0.951 R=0.951 F1=0.951
+  love: P=0.844 R=0.823 F1=0.833
+  sadness: P=0.965 R=0.986 F1=0.975
+  surprise: P=0.875 R=0.778 F1=0.824
+
+
+############################################################
+# STEP 9: Results Comparison
+############################################################
+
+================================================================================
+FINAL COMPARISON TABLE
+================================================================================
+           model  accuracy  macro_f1  weighted_f1  train_time    params
+     BERT (full)    0.9390  0.906855     0.938576  174.278169 109779846
+            LSTM    0.9375  0.908518     0.937033  155.318053   1131398
+BiLSTM+Attention    0.9355  0.899017     0.935653  133.667953   3049351
+          BiLSTM    0.9285  0.895260     0.928385  161.014017   2786182
+             RNN    0.9020  0.854255     0.901553  134.855028     88838
+    TF-IDF + SVM    0.8975  0.866746     0.896913    0.712002         0
+             CNN    0.8940  0.848542     0.891867   24.144822   1208198
+     Transformer    0.8670  0.834327     0.865619  212.111929   2219142
+     TF-IDF + LR    0.8490  0.777743     0.841274    1.995540         0
+     TF-IDF + NB    0.6730  0.431393     0.607365    0.015039         0
+   BERT (frozen)    0.4975  0.202961     0.385227   76.984525    297606
+
+
+############################################################
+# STEP 10: Error Analysis
+############################################################
+
+============================================================
+Error Analysis: CNN
+============================================================
+
+CNN: 212 errors out of 2000 (10.6%)
+Top confused pairs:
+  love -> joy: 50
+  sadness -> anger: 19
+  fear -> sadness: 16
+  fear -> surprise: 14
+  anger -> sadness: 13
+  fear -> anger: 13
+  joy -> sadness: 12
+  joy -> love: 11
+  sadness -> joy: 8
+  sadness -> fear: 7
+
+Sample error cases:
+  True: love       -> Pred: joy        | i feel sympathetic towards her she was tired and weary and i can see how a split second doubt could make the effortless 
+  True: love       -> Pred: joy        | i guess its because i feel like if im too passionate about something it will get taken away from me
+  True: sadness    -> Pred: joy        | i can t imagine any reader feels lethargic calm and content after reading it
+  True: sadness    -> Pred: anger      | during my holiday i met again a friend who had tried to commit suicide she had just left hospital
+  True: surprise   -> Pred: anger      | i never know how to talk to people after shows i always feel a bit dazed so i hope they didnt think i was rude
+  True: joy        -> Pred: sadness    | i play in the rain squeal with glee at the feeling of mud squishing between my toes and enjoy pretty much anything that 
+  True: surprise   -> Pred: fear       | i feel like a strange antisocial creature difficult for the cooperation
+  True: love       -> Pred: joy        | i don t doubt that i m right in this case because i feel that you are a faithful gamer
+  True: fear       -> Pred: surprise   | i realized that i was tired of feeling weird in relationships with boys
+  True: sadness    -> Pred: anger      | i feel terrible and sexist whenever im in a group of women and they start talking about dieting and my brain automatical
+
+============================================================
+Error Analysis: RNN
+============================================================
+
+RNN: 196 errors out of 2000 (9.8%)
+Top confused pairs:
+  joy -> love: 37
+  surprise -> fear: 23
+  love -> joy: 19
+  sadness -> joy: 19
+  sadness -> anger: 16
+  joy -> sadness: 12
+  fear -> anger: 12
+  fear -> sadness: 12
+  anger -> sadness: 11
+  fear -> surprise: 11
+
+Sample error cases:
+  True: fear       -> Pred: surprise   | i am no longer red it feels weird
+  True: sadness    -> Pred: anger      | i feel like a mollusk repeatedly beaten with a wet cloth and stabbed times in the back just for the sake of it
+  True: sadness    -> Pred: joy        | i feel like i am alone in this world other days i feel like i am surrounded or being closed in on and just want to be al
+  True: joy        -> Pred: love       | im not feeling particularly generous and ive begun to wonder if your game plan is actually much longer term and not one 
+  True: sadness    -> Pred: joy        | i feel inside cause life is like a game sometimes but then you came around me the walls just disappeared nothing to surr
+  True: joy        -> Pred: love       | i feel accepted as long as i am real and am not pious uppity and religious for the sake of religion
+  True: joy        -> Pred: sadness    | when i won an unexpected sum of money
+  True: fear       -> Pred: anger      | i remember two specific things from that class feeling terrified of my teacher who would repeat the same question in spa
+  True: joy        -> Pred: sadness    | i started to feel like a real loser like a poser trying to make himself look cool
+  True: joy        -> Pred: love       | i was feeling make it all worthwhile she has been loving on her daddy and she let him feed her breakfast she snuggled up
+
+============================================================
+Error Analysis: LSTM
+============================================================
+
+LSTM: 125 errors out of 2000 (6.2%)
+Top confused pairs:
+  love -> joy: 30
+  joy -> love: 20
+  surprise -> fear: 13
+  fear -> anger: 12
+  sadness -> anger: 11
+  fear -> sadness: 9
+  joy -> surprise: 5
+  joy -> sadness: 5
+  anger -> sadness: 4
+  sadness -> joy: 3
+
+Sample error cases:
+  True: love       -> Pred: joy        | i pray that they will continue to be giving confident happy god fearing and feel loved
+  True: love       -> Pred: joy        | i am feeling blessed that i live in america have a wonderful family and that dorothy kelsey was a part of my life
+  True: love       -> Pred: joy        | i feel in love with the weight watchers program and was faithful to count my points
+  True: sadness    -> Pred: anger      | i dont know where i want to work because there will always be something that makes me feel stressed or anxious at work w
+  True: love       -> Pred: joy        | i feel that he was being overshadowed by the supporting characters
+  True: love       -> Pred: joy        | im really not feeling that passionate about this one
+  True: fear       -> Pred: sadness    | i feel unprotected if i do though
+  True: joy        -> Pred: love       | i feel been accepted and although sip compliant voip services may be used as part of an institution s telephony infrastr
+  True: joy        -> Pred: love       | i feel like my husband is being sweet with me again
+  True: fear       -> Pred: surprise   | i feel that i can t trust my mentor with secrets because i am afraid that he or she would tell my parent guardian
+
+============================================================
+Error Analysis: BiLSTM
+============================================================
+
+BiLSTM: 143 errors out of 2000 (7.1%)
+Top confused pairs:
+  joy -> love: 31
+  love -> joy: 20
+  surprise -> fear: 16
+  sadness -> anger: 15
+  fear -> anger: 11
+  fear -> sadness: 8
+  joy -> sadness: 7
+  joy -> surprise: 6
+  anger -> sadness: 6
+  sadness -> fear: 4
+
+Sample error cases:
+  True: joy        -> Pred: love       | i feel utterly depend on my sweet jesus to carry me through the next day hour mile conversation minute
+  True: joy        -> Pred: sadness    | i didnt feel that i was caught in a limbo between carefree and responsibility
+  True: anger      -> Pred: fear       | when they changed my office to another room without my agreement
+  True: joy        -> Pred: love       | i feel like i should be supporting them somehow but im not sure how
+  True: sadness    -> Pred: fear       | i did not feel inhibited by the fact that the woman s clodia s husband sorry i mean brother i always make that slip is m
+  True: joy        -> Pred: love       | ill tell you what its about as soon as im sure then well talk about how you can purchase it without feeling that youre i
+  True: joy        -> Pred: love       | im putting it in my palm and blowing on it hoping it gets to the ears of the universe and its feeling a little generous 
+  True: love       -> Pred: joy        | i miller production dialog new media feeling generous
+  True: anger      -> Pred: sadness    | when reading a newspaper story of a man who had committed incestuous acts on his twoyear old child the thought that anyo
+  True: love       -> Pred: joy        | i dont know how to explain to you all the emotions that i felt at that moment but i can assure you of one thing i didnt 
+
+============================================================
+Error Analysis: BiLSTM+Attention
+============================================================
+
+BiLSTM+Attention: 129 errors out of 2000 (6.5%)
+Top confused pairs:
+  joy -> love: 25
+  fear -> surprise: 20
+  love -> joy: 20
+  fear -> anger: 12
+  sadness -> anger: 9
+  fear -> sadness: 8
+  surprise -> fear: 7
+  joy -> anger: 6
+  anger -> fear: 4
+  surprise -> joy: 3
+
+Sample error cases:
+  True: sadness    -> Pred: anger      | i feel after i quit a job i hated class thumbnail width
+  True: joy        -> Pred: surprise   | i am feeling amazing mostly normal i am going to a pre thanksgiving celebration with our friends from that time we were 
+  True: love       -> Pred: joy        | i dont know how to explain to you all the emotions that i felt at that moment but i can assure you of one thing i didnt 
+  True: fear       -> Pred: sadness    | i did feel a little less inhibited in class tonight
+  True: joy        -> Pred: love       | i was feeling as if i am in the lap of the divine mother and she is holding me in her soft and tender arms
+  True: fear       -> Pred: sadness    | i should admit when consuming alcohol myself in small amounts i feel much less inhibited ideas come to me more easily an
+  True: love       -> Pred: joy        | i want to capture this feeling and put it into words so i can again gain the sweet taste in my mouth right now
+  True: joy        -> Pred: anger      | one night
+  True: fear       -> Pred: surprise   | ive mostly gotten used to this but being kind of a stubbornly independent person it still feels a little strange at time
+  True: joy        -> Pred: surprise   | i loved the feeling i got during an amazing slalom run whether it was in training or in a race
+
+============================================================
+Error Analysis: Transformer
+============================================================
+
+Transformer: 266 errors out of 2000 (13.3%)
+Top confused pairs:
+  love -> joy: 42
+  sadness -> joy: 39
+  sadness -> anger: 20
+  anger -> sadness: 18
+  fear -> sadness: 18
+  joy -> sadness: 17
+  surprise -> fear: 14
+  joy -> love: 12
+  fear -> anger: 10
+  sadness -> fear: 10
+
+Sample error cases:
+  True: anger      -> Pred: sadness    | getting a low grade on my physics midterm
+  True: joy        -> Pred: love       | i don t discuss even my feelings for beloved with anyone
+  True: sadness    -> Pred: joy        | i believe people who use fulsome manners only for social reasons they aren t on the top of the scale of human evolution 
+  True: love       -> Pred: joy        | i don t doubt that i m right in this case because i feel that you are a faithful gamer
+  True: fear       -> Pred: sadness    | i always feel afraid of telling people because i dont want them to see me differently my self image is very poor and i d
+  True: love       -> Pred: joy        | im writing again but feel like discarding it because of lack of supporting ideas
+  True: fear       -> Pred: sadness    | i woke up on a beautiful sunday morning feeling restless and miserable
+  True: fear       -> Pred: sadness    | i feel unprotected if i do though
+  True: sadness    -> Pred: joy        | i was feeling quite stressed wondering if he would be able to look after bb during my run and if not what was i going to
+  True: anger      -> Pred: sadness    | i feel really despised i haven t told them yet but it s really awful feeling so segregated
+
+============================================================
+Error Analysis: BERT (frozen)
+============================================================
+
+BERT (frozen): 1005 errors out of 2000 (50.2%)
+Top confused pairs:
+  anger -> sadness: 201
+  fear -> sadness: 161
+  sadness -> joy: 150
+  love -> joy: 114
+  joy -> sadness: 111
+  fear -> joy: 76
+  anger -> joy: 70
+  love -> sadness: 50
+  surprise -> joy: 40
+  surprise -> sadness: 32
+
+Sample error cases:
+  True: anger      -> Pred: sadness    | i just keep feeling like someone is being unkind to me and doing me wrong and then all i can think of doing is to get ba
+  True: fear       -> Pred: joy        | i feel shy now
+  True: love       -> Pred: joy        | i appreciate when he shows how he feels because i know that he is not naturally an affectionate person
+  True: anger      -> Pred: joy        | i feel time is running out so i m not bothered with myself now
+  True: sadness    -> Pred: joy        | i am here to update my blog just found out that my blog looks feels dull when there are no updates
+  True: joy        -> Pred: sadness    | i feel like when ever i start to feel happy for a consistent amount of time it all has to end
+  True: fear       -> Pred: sadness    | i walk into a restaurant well any public place i feel like all eyes are on me and i feel really paranoid
+  True: love       -> Pred: joy        | im feeling all romantic so i thought id show you some easy last minute presents and fashion ideas for valentines day
+  True: joy        -> Pred: sadness    | when i won an unexpected sum of money
+  True: sadness    -> Pred: joy        | i suppose its only natural that id start to feel a little homesick for new england at this time of year
+
+============================================================
+Error Analysis: BERT (full)
+============================================================
+
+BERT (full): 122 errors out of 2000 (6.1%)
+Top confused pairs:
+  love -> joy: 28
+  joy -> love: 25
+  surprise -> fear: 14
+  fear -> sadness: 10
+  anger -> sadness: 8
+  fear -> anger: 6
+  anger -> fear: 6
+  sadness -> anger: 5
+  joy -> surprise: 4
+  fear -> surprise: 4
+
+Sample error cases:
+  True: anger      -> Pred: fear       | i could even think about it i said uh well most days i feel like im being tortured i want to pull all my hair out and sc
+  True: surprise   -> Pred: fear       | i am right handed however i play billiards left handed naturally so me trying to play right handed feels weird
+  True: joy        -> Pred: love       | i feel about the people or being accepted by them
+  True: joy        -> Pred: love       | i didnt feel very accepted by most of my family members so my relationship with my church family made up for that
+  True: joy        -> Pred: love       | i have had several new members tell me how comfortable they feel with how accepted they are by the existing members and 
+  True: joy        -> Pred: love       | i feel very passionate about this because of children reared within the evangelical church leave it before they are
+  True: surprise   -> Pred: fear       | i bit my lip as he slightly whispered this will feel weird tell me if i hurt you
+  True: love       -> Pred: joy        | i am not amazing or great at photography but i feel passionate about it
+  True: fear       -> Pred: anger      | i don t feel agitated some part of me thinks that i ve finally managed to keep my emotions in check
+  True: anger      -> Pred: fear       | i wasn t sure what this gnawing feeling i was having but i was getting agitated sitting around doing nothing
+
+
+============================================================
+PER-CLASS F1 COMPARISON
+============================================================
+                  anger   fear    joy   love  sadness  surprise
+CNN               0.893  0.849  0.924  0.746    0.931     0.748
+RNN               0.911  0.854  0.927  0.824    0.937     0.672
+LSTM              0.938  0.913  0.950  0.839    0.971     0.841
+BiLSTM            0.923  0.904  0.944  0.843    0.964     0.794
+BiLSTM+Attention  0.938  0.878  0.955  0.861    0.976     0.787
+Transformer       0.860  0.826  0.898  0.778    0.885     0.759
+BERT (frozen)     0.000  0.000  0.668  0.000    0.550     0.000
+BERT (full)       0.948  0.910  0.951  0.833    0.975     0.824
+
+
+============================================================
+ALL DONE!
+Results saved to results/
+==========================================================

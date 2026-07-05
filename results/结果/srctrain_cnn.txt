@@ -1,0 +1,25 @@
+root@autodl-container-bud5qn7u2k-b2fa49ec:~/nlp_project# python src/train_cnn.py
+
+Loading GloVe from data/glove.6B.300d.txt...
+Loading vectors: 400001it [00:18, 21325.31it/s]
+Loaded 400001 words, dim=300
+Device: cuda
+Parameters: 1,208,198
+Epoch  1/20 | Loss: 0.8816 | Val Acc: 0.8621
+Epoch  2/20 | Loss: 0.3602 | Val Acc: 0.8846
+Epoch  3/20 | Loss: 0.2439 | Val Acc: 0.8956
+Epoch  4/20 | Loss: 0.1657 | Val Acc: 0.8876
+Epoch  5/20 | Loss: 0.1196 | Val Acc: 0.8931
+Epoch  6/20 | Loss: 0.0923 | Val Acc: 0.8921
+Epoch  7/20 | Loss: 0.0724 | Val Acc: 0.8856
+Epoch  8/20 | Loss: 0.0601 | Val Acc: 0.8961
+Early stopping at epoch 8
+
+Test Accuracy: 0.8940, Macro-F1: 0.8485
+  anger: P=0.863 R=0.926 F1=0.893
+  fear: P=0.897 R=0.806 F1=0.849
+  joy: P=0.901 R=0.947 F1=0.924
+  love: P=0.883 R=0.646 F1=0.746
+  sadness: P=0.922 R=0.940 F1=0.931
+  surprise: P=0.733 R=0.764 F1=0.748
+root@autodl-container-bud5qn7u2k-b2fa49ec:~/nlp_project# 

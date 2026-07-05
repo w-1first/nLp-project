@@ -1,0 +1,45 @@
+Loading GloVe from data/glove.6B.300d.txt...
+Loading vectors: 400001it [00:18, 21180.96it/s]
+Loaded 400001 words, dim=300
+Device: cuda
+Parameters: 2,219,142
+Epoch  1/30 | Loss: 1.5876 | Val Acc: 0.3378
+Epoch  2/30 | Loss: 1.4193 | Val Acc: 0.5932
+Epoch  3/30 | Loss: 1.0384 | Val Acc: 0.6482
+Epoch  4/30 | Loss: 0.8524 | Val Acc: 0.7686
+Epoch  5/30 | Loss: 0.6706 | Val Acc: 0.7866
+Epoch  6/30 | Loss: 0.5883 | Val Acc: 0.7931
+Epoch  7/30 | Loss: 0.5208 | Val Acc: 0.8361
+Epoch  8/30 | Loss: 0.4818 | Val Acc: 0.8286
+Epoch  9/30 | Loss: 0.4364 | Val Acc: 0.8471
+Epoch 10/30 | Loss: 0.4006 | Val Acc: 0.8546
+Epoch 11/30 | Loss: 0.3986 | Val Acc: 0.8496
+Epoch 12/30 | Loss: 0.3747 | Val Acc: 0.8501
+Epoch 13/30 | Loss: 0.3645 | Val Acc: 0.8436
+Epoch 14/30 | Loss: 0.3435 | Val Acc: 0.8461
+Epoch 15/30 | Loss: 0.3381 | Val Acc: 0.8591
+Epoch 16/30 | Loss: 0.3198 | Val Acc: 0.8601
+Epoch 17/30 | Loss: 0.3059 | Val Acc: 0.8641
+Epoch 18/30 | Loss: 0.2896 | Val Acc: 0.8671
+Epoch 19/30 | Loss: 0.2855 | Val Acc: 0.8611
+Epoch 20/30 | Loss: 0.2777 | Val Acc: 0.8716
+Epoch 21/30 | Loss: 0.2736 | Val Acc: 0.8616
+Epoch 22/30 | Loss: 0.2671 | Val Acc: 0.8706
+Epoch 23/30 | Loss: 0.2579 | Val Acc: 0.8656
+Epoch 24/30 | Loss: 0.2588 | Val Acc: 0.8711
+Epoch 25/30 | Loss: 0.2518 | Val Acc: 0.8701
+Epoch 26/30 | Loss: 0.2471 | Val Acc: 0.8706
+Epoch 27/30 | Loss: 0.2427 | Val Acc: 0.8716
+Epoch 28/30 | Loss: 0.2415 | Val Acc: 0.8741
+Epoch 29/30 | Loss: 0.2393 | Val Acc: 0.8751
+Epoch 30/30 | Loss: 0.2390 | Val Acc: 0.8761
+
+Test Accuracy: 0.8670, Macro-F1: 0.8343
+  anger: P=0.860 R=0.860 F1=0.860
+  fear: P=0.830 R=0.823 F1=0.826
+  joy: P=0.861 R=0.938 F1=0.898
+  love: P=0.884 R=0.695 F1=0.778
+  sadness: P=0.897 R=0.872 F1=0.885
+  surprise: P=0.800 R=0.722 F1=0.759
+root@autodl-container-bud5qn7u2k-b2fa49ec:~/nlp_project# 
+root@autodl-container-bud5qn7u2k-b2fa49ec:~/nlp_project# 

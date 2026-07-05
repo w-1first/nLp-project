@@ -1,0 +1,6 @@
+data/glove.6B.*.txt
+data/glove.6B.zip
+models/*.pth
+glove.6B.zip
+glove.6B.zip echo glove.6B.zip
+glove.6B.zip

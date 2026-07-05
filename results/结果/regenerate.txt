@@ -1,0 +1,97 @@
+root@autodl-container-bud5qn7u2k-b2fa49ec:~/nlp_project#  python3 regenerate_metrics.py
+Device: cuda
+Loading GloVe from data/glove.6B.300d.txt...
+Loading vectors: 400001it [00:18, 21440.56it/s]
+Loaded 400001 words, dim=300
+
+=== Traditional ML ===
+
+============================================================
+Training: TF-IDF + LR
+============================================================
+/root/miniconda3/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:1457: FutureWarning: 'n_jobs' has no effect since 1.8 and will be removed in 1.10. You provided 'n_jobs=-1', please leave it unspecified.
+  warnings.warn(msg, category=FutureWarning)
+Accuracy: 0.8490, Macro-F1: 0.7777, Time: 2.1s
+  anger: P=0.903 R=0.753 F1=0.821
+  fear: P=0.906 R=0.688 F1=0.782
+  joy: P=0.809 R=0.976 F1=0.885
+  love: P=0.902 R=0.561 F1=0.692
+  sadness: P=0.858 R=0.941 F1=0.898
+  surprise: P=0.825 R=0.458 F1=0.589
+
+============================================================
+Training: TF-IDF + SVM
+============================================================
+Accuracy: 0.8975, Macro-F1: 0.8667, Time: 0.6s
+  anger: P=0.891 R=0.871 F1=0.881
+  fear: P=0.898 R=0.819 F1=0.857
+  joy: P=0.904 R=0.942 F1=0.923
+  love: P=0.823 R=0.793 F1=0.807
+  sadness: P=0.925 R=0.931 F1=0.928
+  surprise: P=0.806 R=0.806 F1=0.806
+
+============================================================
+Training: TF-IDF + NB
+============================================================
+Accuracy: 0.6730, Macro-F1: 0.4314, Time: 0.0s
+  anger: P=0.922 R=0.306 F1=0.460
+  fear: P=0.973 R=0.308 F1=0.468
+  joy: P=0.618 R=0.985 F1=0.759
+  love: P=1.000 R=0.037 F1=0.071
+  sadness: P=0.689 R=0.890 F1=0.777
+  surprise: P=1.000 R=0.028 F1=0.054
+
+Traditional ML done!
+
+=== CNN ===
+
+=== RNN ===
+
+=== LSTM ===
+
+=== BiLSTM ===
+
+=== BiLSTM+Attention ===
+
+=== Transformer ===
+
+=== all_metrics.csv ===
+           model  accuracy  macro_precision  macro_recall  macro_f1  weighted_f1  train_time  params
+            LSTM    0.9375         0.916038      0.902260  0.908518     0.937033  155.320000 1131398
+BiLSTM+Attention    0.9355         0.893192      0.907494  0.899017     0.935653  133.670000 3049351
+          BiLSTM    0.9285         0.901776      0.892073  0.895260     0.928385  161.010000 2786182
+             RNN    0.9020         0.860008      0.851777  0.854255     0.901553  134.860000   88838
+    TF-IDF + SVM    0.8975         0.874210      0.860166  0.866746     0.896913    0.646381       0
+             CNN    0.8940         0.866583      0.838123  0.848542     0.891867   24.140000 1208198
+     TF-IDF + LR    0.8490         0.867081      0.729592  0.777743     0.841274    2.089746       0
+     TF-IDF + NB    0.6730         0.867047      0.425586  0.431393     0.607365    0.014704       0
+     Transformer    0.6075         0.811879      0.540594  0.584099     0.575013  212.110000 2219142
+
+=== Final all_metrics.csv (with BERT) ===
+           model  accuracy  macro_precision  macro_recall  macro_f1  weighted_f1  train_time    params
+     BERT (full)    0.9390         0.910000      0.900000  0.906900     0.938600  174.280000 109779846
+            LSTM    0.9375         0.916038      0.902260  0.908518     0.937033  155.320000   1131398
+BiLSTM+Attention    0.9355         0.893192      0.907494  0.899017     0.935653  133.670000   3049351
+          BiLSTM    0.9285         0.901776      0.892073  0.895260     0.928385  161.010000   2786182
+             RNN    0.9020         0.860008      0.851777  0.854255     0.901553  134.860000     88838
+    TF-IDF + SVM    0.8975         0.874210      0.860166  0.866746     0.896913    0.646381         0
+             CNN    0.8940         0.866583      0.838123  0.848542     0.891867   24.140000   1208198
+     TF-IDF + LR    0.8490         0.867081      0.729592  0.777743     0.841274    2.089746         0
+     TF-IDF + NB    0.6730         0.867047      0.425586  0.431393     0.607365    0.014704         0
+     Transformer    0.6075         0.811879      0.540594  0.584099     0.575013  212.110000   2219142
+   BERT (frozen)    0.4975         0.300000      0.230000  0.203000     0.385200   76.980000    297606
+
+=== per_class_metrics.csv saved ===
+
+=== Per-Class F1 ===
+class             anger   fear    joy   love  sadness  surprise
+model                                                          
+BiLSTM            0.923  0.904  0.944  0.843    0.964     0.794
+BiLSTM+Attention  0.938  0.878  0.955  0.861    0.976     0.787
+CNN               0.893  0.849  0.924  0.746    0.931     0.748
+LSTM              0.938  0.913  0.950  0.839    0.971     0.841
+RNN               0.911  0.854  0.927  0.824    0.937     0.672
+Transformer       0.829  0.603  0.649  0.434    0.397     0.593
+
+DONE - all CSVs regenerated.
+root@autodl-container-bud5qn7u2k-b2fa49ec:~/nlp_project# 
